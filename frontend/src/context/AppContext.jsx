@@ -30,7 +30,7 @@ const AppContextProvider = (props) => {
                 setNews(prev => {
                     return {
                         ...prev,
-                        allNews: data.data.articles
+                        allNews: data.data.data
                     }
                 })
             }
@@ -56,7 +56,7 @@ const AppContextProvider = (props) => {
                 setNews(prev => {
                     return {
                         ...prev,
-                        [category]: data.data.articles
+                        [category]: data.data.data
                     }
                 })
             }

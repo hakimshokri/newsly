@@ -24,14 +24,14 @@ const NewsCategory = () => {
                     <ul class="">
                         <li class="rounded-lg overflow-hidden">
                             <div class="relative h-[500px]">
-                                <img src={categoryNews[0]?.urlToImage || assets.news_bg} class="w-full h-full object-cover" alt="Breaking Sports News" />
+                                <img src={categoryNews[0]?.media_url || categoryNews[0]?.media_thumbnail || assets.news_bg} class="w-full h-full object-cover" alt="Breaking Sports News" />
                                 <div
                                     class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black to-transparent text-white">
                                     <span
                                         class="bg-black px-3 py-1 rounded-full text-sm font-medium mb-4 inline-block">Breaking
                                         News</span>
                                     <h1 class="text-4xl font-bold mb-4">{categoryNews[0]?.title || `Breaking ${category} news`}</h1>
-                                    <p class="text-lg">{categoryNews[0]?.description || `Breaking ${category} news`}</p>
+                                    <p class="text-lg">{categoryNews[0]?.description ? categoryNews[0].description.length > 450 ? `${categoryNews[0].description.slice(0, 450)}...` : categoryNews[0].description : "Breaking News"}</p>
                                 </div>
                             </div>
                         </li>
@@ -39,11 +39,11 @@ const NewsCategory = () => {
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                {categoryNews.slice(1, 10).map((news, index) => (
+                {categoryNews.slice(1, 7).map((news, index) => (
                     <article key={index} className="bg-white rounded-lg overflow-hidden shadow-sm">
                         {/* News Image */}
                         <img
-                            src={news.urlToImage || assets.news_bg}
+                            src={news.media_url || news.media_thumbnail || assets.news_bg}
                             className="w-full h-64 object-cover"
                             alt={news.title}
                         />
@@ -59,7 +59,7 @@ const NewsCategory = () => {
                             <h2 className="text-xl font-bold mt-4 mb-2">{news.title}</h2>
 
                             {/* News Description */}
-                            <p className="text-gray-600">{news.description}</p>
+                            <p className="text-gray-600">{news.description ? news.description.length > 150 ? `${news.description.slice(0, 150)}...` : news.description : `${category} news`}</p>
                         </div>
                     </article>
                 ))}
@@ -68,14 +68,14 @@ const NewsCategory = () => {
                 <div class="lg:col-span-2">
                     <h3 class="text-lg font-bold mb-6">Latest News</h3>
                     <div class="space-y-6">
-                        {categoryNews.slice(10, 12).map((news, index) => (
+                        {categoryNews.slice(7, 10).map((news, index) => (
                             <article
                                 key={index}
                                 className="bg-white p-4 md:p-6 rounded-lg shadow-sm flex flex-col md:flex-row gap-4 md:gap-6"
                             >
                                 {/* News Image */}
                                 <img
-                                    src={news.urlToImage || assets.news_bg}
+                                    src={news.media_url || news.media_thumbnail || assets.news_bg}
                                     className="w-full md:w-32 h-48 md:h-32 rounded-lg object-cover"
                                     alt={news.title}
                                 />
@@ -88,11 +88,11 @@ const NewsCategory = () => {
 
                                     <h4 className="text-lg font-bold mt-2 mb-2">{news.title}</h4>
 
-                                    <p className="text-gray-600 text-sm mb-2">{news.description}</p>
+                                    <p className="text-gray-600 text-sm mb-2">{news.description ? news.description.length > 150 ? `${news.description.slice(0, 150)}...` : news.description : `${category} news`}</p>
 
                                     <div className="flex items-center text-sm text-gray-500">
                                         <i className="far fa-clock mr-2"></i>
-                                        <span>{new Date(news.publishedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }).replace(",", "")}</span>
+                                        <span>{new Date(news.pub_date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }).replace(",", "")}</span>
                                     </div>
                                 </div>
                             </article>

@@ -11,7 +11,7 @@ const Navbar = () => {
             <nav class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
                     <div class="flex items-center">
-                        <a href="/" class="flex-shrink-0 flex items-center">
+                        <a onClick={() => {navigate('/'); scrollTo(0, 0)}} class="flex-shrink-0 flex items-center">
                             <img class="h-8 w-auto" src={assets.newsly_logo} alt="Newsly" />
                             <span class="text-xl font-bold text-[#F08F26]">Newsly</span>
                         </a>
